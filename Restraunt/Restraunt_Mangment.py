@@ -21,9 +21,9 @@ class RestaurantOrderManagement:
             "DRINKS": 1
         }
 
-        self.exchange_rate = 82  # Exchange rate for currency conversion
+        self.exchange_rate = 275 #Exchange rate for currency conversion
 
-        self.setup_background(root)  # Set up the background image
+  # Set up the background image
 
         # Create a frame to hold the widgets
         frame = ttk.Frame(root)
@@ -66,7 +66,7 @@ class RestaurantOrderManagement:
                                          textvariable=self.currency_var,
                                          state="readonly",
                                          width=18,
-                                         values=('USD', 'INR'))
+                                         values=('USD', 'PKR'))
         currency_dropdown.grid(row=len(self.menu_items) + 1,
                                column=1,
                                padx=10,
@@ -85,22 +85,13 @@ class RestaurantOrderManagement:
                           pady=10)
 
     # Method to set up the background image
-    def setup_background(self, root):
-        bg_width, bg_height = 800, 600
-        canvas = tk.Canvas(root, width=bg_width, height=bg_height)
-        canvas.pack()
-        original_image = tk.PhotoImage(file="background.png")
-        background_image = original_image.subsample(
-            original_image.width() // bg_width,
-            original_image.height() // bg_height)
-        canvas.create_image(0, 0, anchor=tk.NW, image=background_image)
-        canvas.image = background_image
+
 
     # Method to update the menu prices based on the selected currency
     def update_menu_prices(self, *args):
         currency = self.currency_var.get()
-        symbol = "₹" if currency == "INR" else "$"
-        rate = self.exchange_rate if currency == "INR" else 1
+        symbol = "Rs" if currency == "PKR" else "$"
+        rate = self.exchange_rate if currency == "PKR" else 1
         for item, label in self.menu_labels.items():
             price = self.menu_items[item] * rate
             label.config(text=f"{item} ({symbol}{price}):")
@@ -110,8 +101,8 @@ class RestaurantOrderManagement:
         total_cost = 0
         order_summary = "Order Summary:\n"
         currency = self.currency_var.get()
-        symbol = "₹" if currency == "INR" else "$"
-        rate = self.exchange_rate if currency == "INR" else 1
+        symbol = "Rs" if currency == "PKR" else "$"
+        rate = self.exchange_rate if currency == "PKR" else 1
         for item, entry in self.menu_quantities.items():
             quantity = entry.get()
             if quantity.isdigit():
