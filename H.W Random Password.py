@@ -22,4 +22,4 @@ temp = random.sample(all,length)
 password = "".join(temp)
 
 #print the password
-print(password)
+print(password)                                                                 
