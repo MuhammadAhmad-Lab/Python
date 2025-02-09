@@ -8,7 +8,7 @@ while number > 0:
     reversed_number = reversed_number *10 + digit
     number //=10
     
-if original_number = reversed_number:
+if original_number == reversed_number:
     print(f"{original_number} is a palindrome")
 else:
     print(f"{original_number} is not a palindrome")
